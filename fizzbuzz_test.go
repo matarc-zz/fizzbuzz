@@ -32,11 +32,15 @@ func TestGenerateFizzBuzz(t *testing.T) {
 	if len(fizzBuzzList) != 20 {
 		t.Errorf("fizzBuzzList should contain exactly 20 strings")
 	}
-	resultList := []string{"1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13",
+	expectedList := []string{"1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13",
 		"14", "fizzbuzz", "16", "17", "fizz", "19", "buzz"}
-	for i := 0; i < 20; i++ {
-		if resultList[i] != fizzBuzzList[i] {
-			t.Errorf("#%d : expected '%s' is '%s'", i+1, resultList[i], fizzBuzzList[i])
+	compareFizzBuzzList(t, expectedList, fizzBuzzList, len(expectedList))
+}
+
+func compareFizzBuzzList(t *testing.T, expectedList, resultList []string, lengthList int) {
+	for i := 0; i < lengthList; i++ {
+		if expectedList[i] != resultList[i] {
+			t.Errorf("#%d : expected '%s' is '%s'", i+1, expectedList[i], resultList[i])
 		}
 	}
 }
